@@ -1,0 +1,32 @@
+{
+  "startIndex": 10,
+  "itemsPerPage": 10,
+  "totalResults": 12,
+  "entry": [
+    {
+      "id": "123",
+      "displayName": "Minimal Contact"
+    },
+    {
+      "id": "703887",
+      "displayName": "Mork Hashimoto",
+      "name": {
+        "familyName": "Hashimoto",
+        "givenName": "Mork"
+      },
+      "emails": [
+        {
+          "value": "mhashimoto-04@plaxo.com",
+          "type": "work",
+          "primary": "true"
+        }
+      ],
+      "accounts": [
+        {
+          "domain": "plaxo.com",
+          "userid": "2706"
+        }
+      ]
+    }
+  ]
+}

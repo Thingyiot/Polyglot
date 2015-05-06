@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://jsonschema.net",
+  "type": "object",
+  "properties": {
+    "id": {
+      "id": "http://jsonschema.net/id",
+      "type": "string"
+    },
+    "deviceType": {
+      "id": "http://jsonschema.net/deviceType",
+      "type": "string"
+    },
+    "deviceName": {
+      "id": "http://jsonschema.net/deviceName",
+      "type": "string"
+    },
+    "deviceBrand": {
+      "id": "http://jsonschema.net/deviceBrand",
+      "type": "string"
+    },
+    "deviceIP": {
+      "id": "http://jsonschema.net/deviceIP",
+      "type": "string"
+    },
+    "deviceMAC": {
+      "id": "http://jsonschema.net/deviceMAC",
+      "type": "string"
+    },
+    "deviceUID": {
+      "id": "http://jsonschema.net/deviceUID",
+      "type": "integer"
+    },
+    "created": {
+      "id": "http://jsonschema.net/created",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "deviceType",
+    "deviceName",
+    "deviceBrand",
+    "deviceIP",
+    "deviceMAC",
+    "deviceUID",
+    "created"
+  ]
+}
