@@ -1,6 +1,4 @@
 module.exports = function(app) {
-
-   var oauthserver =require('./config/security')(app);
    var mongoose = require('mongoose');
    var dbController = require('./controllers/dbController');
    var authController = require('./controllers/authController');
