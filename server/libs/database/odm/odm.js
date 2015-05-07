@@ -36,10 +36,18 @@ odm.prototype.getModel = function(modelName, action, json) {
   if (modelName == 'client') {
     var OAuthClients = mongoose.model('OAuthClients');
     if (action === 'create') {
-      token = new OAuthClients(json);
-      return token;
+      var client = new OAuthClients(json);
+      return client;
     }
     return OAuthClients;
+  }
+   if (modelName == 'user') {
+    var OAuthUsers = mongoose.model('OAuthUsers');
+    if (action === 'create') {
+      users = new OAuthUsers(json);
+      return users;
+    }
+    return OAuthUsers;
   }
 }
 

@@ -2,6 +2,7 @@
 
 module.exports = function(mongoose) {
 
+
   var db = mongoose.connection,
     Schema = mongoose.Schema,
     validate = require('mongoose-validator').validate,
@@ -10,20 +11,24 @@ module.exports = function(mongoose) {
 
   autoIncrement.initialize(db);
 
-  var TYPE = 'OAuthRefreshTokens';
+  var TYPE = 'CodeSchema';
 
   var schema = new Schema({
-    refreshToken: {
-      type: String
+    value: {
+      type: String,
+      required: true
     },
-    clientId: {
-      type: String
+    redirectUri: {
+      type: String,
+      required: true
     },
     userId: {
-      type: String
+      type: String,
+      required: true
     },
-    expires: {
-      type: Date
+    clientId: {
+      type: String,
+      required: true
     }
   });
 

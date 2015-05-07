@@ -14,10 +14,12 @@ module.exports = function(mongoose) {
 
   var schema = new Schema({
     username: {
-      type: String
+      type: String,
+      required: true
     },
     password: {
-      type: String
+      type: String,
+      required: true
     },
     firstname: {
       type: String
@@ -27,6 +29,7 @@ module.exports = function(mongoose) {
     },
     email: {
       type: String,
+      required: true,
       default: ''
     }
   });
