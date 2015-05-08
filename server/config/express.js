@@ -6,7 +6,7 @@
      methodOverride = require('method-override');
    var session = require('express-session');
    var RedisStore = require('connect-redis')(session);
-
+   var logger = require('../config/logger');
 
    var options = {
      host: 'localhost',
@@ -29,7 +29,7 @@
      if (!req.session) {
        return next(new Error('oh no'));// handle error
      }
-     console.log('Sucessfully Creating Sessions...');
+     logger.info('Sucessfully Creating Sessions...');
      next();// otherwise continue
    });
 
