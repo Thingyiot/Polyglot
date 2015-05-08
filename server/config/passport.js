@@ -66,10 +66,10 @@
      });
    }));
 
-   app.post('/api/auth/token', function(req, res, next) {
+   app.get('/api/auth/token', function(req, res, next) {
      passport.authenticate('local', function(err, user, info) {
        if (err) {
-         return next(err)
+         return next(err);
        }
        if (!user) {
          res.send({
