@@ -57,7 +57,6 @@
              "userId" : user._id
            }, function(err, token) {
             if(err){console.log(err)};
-               console.log(token.accessToken);
             return done(null, true, {
               token:token.accessToken
              });
@@ -73,7 +72,6 @@
          return next(err)
        }
        if (!user) {
-         console.log(info.message);
          res.send({
            'token': token
          });
