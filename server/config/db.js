@@ -9,7 +9,11 @@ var mongo=new documentMapper();
 	mongo.connect(dev.mongo.uri);
 	mongo.bootStrapModels();
 
-var mysql=new relationalMapper();	
+var mysql=new relationalMapper();
     mysql.connect(dev.mysql.uri);
+
+var redis = require("redis"),
+    client = redis.createClient();
+
 
 }
