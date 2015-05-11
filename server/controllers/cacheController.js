@@ -8,13 +8,13 @@ var _helper = new cacheHelper();
 
 controller.set = function(req, res) {
   logger.info(req.params);
-  _helper.set(req.params.type, req.params.cache,req.body.key,req.body.value,req.body.ttl,res);
+  _helper.set(req.params.type, req.params.cache, req.body.key, req.body.value, req.body.ttl, res);
 }
 
-controller.multiSet = function(req, res) {
+controller.get = function(req, res) {
   logger.info(req.params);
-  _helper.multiSet(req.params.type, req.params.cache,req.body.key,req.body.value,req.body.ttl,res);
+  _helper.get(req.params.type, req.params.cache, req.body.key, res);
 }
 
- // Expose app
-exports = module.exports =  controller ;
+// Expose app
+exports = module.exports = controller;

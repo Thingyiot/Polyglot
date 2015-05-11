@@ -7,14 +7,15 @@ function cacheHelper(model) {
 }
 
 cacheHelper.prototype.set = function(type,cache,key,json,ttl,res) {
-    redis.set(key,json,ttl);
+    redis.set(key,json,ttl,function(){
+      console.log('Successfully set key '+ key + 'with value' + value );
+    });
     res.send({set:{key:key,value:json}});
 }
 
 
-cacheHelper.prototype.multiSet = function(type,cache,key,json,ttl,res) {
-    redis.set(key,json,ttl);
-    res.send({set:{key:key,value:json}});
+cacheHelper.prototype.get = function(type,cache,key,res) {
+    redis.get(key,res);
 }
 
 

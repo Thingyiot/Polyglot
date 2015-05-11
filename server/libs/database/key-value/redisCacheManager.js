@@ -17,15 +17,21 @@ redisCacheManager.prototype.connect = function() {
 }
 
 redisCacheManager.prototype.set = function(key, value, ttl) {
-  client.set(key, value, ttl, function(key, value) {
-    if (ttl) {
-      client.expire(key, ttl);
-    }
-  });
+   client.set(key,value);
 }
 
-redisCacheManager.prototype.multiSet = function(key, values, ttl) {
-
+redisCacheManager.prototype.get = function(key, res) {
+  client.get(key, function(err, value) {
+    if (!value) {
+      console.log('Missing or expired Key..' + key);
+    }
+    res.send({
+      returned: {
+        key: key,
+        value: value
+      }
+    });
+  });
 }
 
 // Expose app
