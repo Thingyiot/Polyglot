@@ -47,6 +47,7 @@
     "mongoose-validator": "^1.0.3",
     "mysql": "^2.6.2",
     "neo4j": "^1.1.1",
+    "node-redis-client": "0.0.10",
     "npm": "^2.8.4",
     "oauth2-server": "^2.4.0",
     "oauth2orize": "^1.0.1",
