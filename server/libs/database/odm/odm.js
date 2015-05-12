@@ -2,7 +2,7 @@ var config = require('../../../config/config');
 var path = require(config.modules.path);
 var fs = require(config.modules.fs);
 var mongoose = require(config.modules.mongoose);
-
+var logger = require('../../../config/logger');
 
 function odm(link) {
   this.link = link;
@@ -13,7 +13,7 @@ odm.prototype.connect = function(url) {
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function(callback) {
-    console.log('Connected to:' + url);
+    logger.info('Connected to:' + url);
   });
 }
 

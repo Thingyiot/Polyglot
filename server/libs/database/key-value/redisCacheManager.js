@@ -1,3 +1,4 @@
+var logger = require('../../../config/logger');
 var redis = require('redis');
 var options = {
   port: 6379,
@@ -12,7 +13,7 @@ function redisCacheManager(link) {
 
 redisCacheManager.prototype.connect = function() {
   client.on('connect', function() {
-    console.log('successfilly connected to redis .... ' + 'Host ' + options.host + ":" + options.port);
+    logger.info('successfilly connected to redis .... ' + 'Host ' + options.host + ":" + options.port);
   });
 }
 
@@ -26,7 +27,7 @@ redisCacheManager.prototype.set = function(key, value, ttl) {
 redisCacheManager.prototype.get = function(key, res) {
   client.get(key, function(err, value) {
     if (!value) {
-      console.log('Missing or expired Key..' + key);
+      logger.info('Missing or expired Key..' + key);
     }
     res.send({
       returned: {
@@ -40,13 +41,17 @@ redisCacheManager.prototype.get = function(key, res) {
 redisCacheManager.prototype.count = function(key, res) {
   client.get(key, function(err, value) {
     if (value) {
-      console.log(value.length);
+      logger.info("count for key "+key+":"+value.length);
       res.send({
         returned: {
           key: key,
           count: value.length
         }
       });
+    }
+    else{
+      logger.error('The value returned is null ');
+      res.send({err:'The value returned is null '});
     }
   });
 }

@@ -2,17 +2,16 @@ var config = require('../../../config/config');
 var path = require(config.modules.path);
 var fs = require(config.modules.fs);
 var relational = require(config.modules.orm);
-var Device = null;
+var logger = require('../../../config/logger');
 
 function orm(link) {
   this.link = link;
 }
 
 orm.prototype.connect = function(url) {
-
   relational.connect(url, function(err, db) {
     if (err) throw err;
-    console.log('Connected to:' + url);
+    logger.info('Connected to:' + url);
     bootStrapModels(db);
   });
 }
