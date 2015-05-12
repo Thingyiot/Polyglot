@@ -20,5 +20,5 @@ module.exports = function(app) {
    app.post('/:type/:db/:model/findMany', dbController.findMany);
    app.post('/:type/:db/:model/count', dbController.count);
    app.post('/:type/:db/:model/delete', dbController.del);
-
+   app.post('/:type/:db/:model/update', dbController.update);
 }

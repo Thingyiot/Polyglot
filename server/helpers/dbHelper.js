@@ -138,8 +138,43 @@ dbHelper.prototype.count = function(dbType, database, action, model, req, res) {
   }
 }
 
+dbHelper.prototype.update = function(dbType, database, action, model, req, res) {
+  if (dbType === 'document' && database === 'mongo' && action === 'update') {
+    mongo.getModel(model, action).update({
+        "_id": req.params._id
+      }, {
+        $set: req.params.query,
+      }, {
+        multi: true
+      },
+      function(err, result) {
+        res.send({
+          result: "Update Successfull!"
+        });
+      }
+    );
+
+
+  } else if (dbType === 'relational' && database === 'mysql' && action === 'update') {
+
+    /**
+            Person.find({ surname: "Doe" }, function (err, people) {
+            // SQL: "SELECT * FROM person WHERE surname = 'Doe'"
+
+            console.log("People found: %d", people.length);
+            console.log("First person: %s, age %d", people[0].fullName(), people[0].age);
+
+            people[0].age = 16;
+            people[0].save(function (err) {
+                // err.msg = "under-age";
+            });
+        });
+    */
+  }
+}
 
 dbHelper.prototype.getModel = function(modelName) {
+
   if (modelName === 'device') {
     return mysql.getModel('device');
   }

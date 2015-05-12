@@ -20,8 +20,8 @@
   }
 
   controller.findOne= function(req, res) {
-     console.log({params:req.params});
-     console.log({requestBody:req.body});
+     logger.info({params:req.params});
+     logger.info({requestBody:req.body});
 
      var model = _helper.getModel(req.params.model);
 
@@ -35,8 +35,8 @@
   };
 
   controller.findMany=function(req, res) {
-     console.log({params:req.params});
-     console.log({requestBody:req.body});
+     logger.info({params:req.params});
+     logger.info({requestBody:req.body});
 
      var model = _helper.getModel(req.params.model);
 
@@ -50,12 +50,23 @@
   };
 
  controller.update=function(req, res) {
+    logger.info({params:req.params});
+    logger.info({requestBody:req.body});
 
+     var model = _helper.getModel(req.params.model);
+
+      try{
+        var result = _helper.update(req.params.type,req.params.db,'update',model,req.body,res);
+      }
+      catch(err){
+          throw new Error(err);
+          res.send({error:err});
+      }
  }
 
  controller.del=function(req, res) {
-     console.log({params:req.params});
-     console.log({requestBody:req.body});
+     logger.info({params:req.params});
+     logger.info({requestBody:req.body});
 
      var model = _helper.getModel(req.params.model);
 
@@ -69,8 +80,8 @@
  }
 
 controller.count=function(req, res) {
-     console.log({params:req.params});
-     console.log({requestBody:req.body});
+     logger.info({params:req.params});
+     logger.info({requestBody:req.body});
 
      var model = _helper.getModel(req.params.model);
 
