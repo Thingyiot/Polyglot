@@ -156,20 +156,21 @@ dbHelper.prototype.update = function(dbType, database, action, model, req, res) 
 
 
   } else if (dbType === 'relational' && database === 'mysql' && action === 'update') {
+    var call = model.get(req.params.id, function(err, obj) {
+       obj[Object.keys(req.params.query)]=req.params.query[Object.keys(req.params.query)];
 
-    /**
-            Person.find({ surname: "Doe" }, function (err, people) {
-            // SQL: "SELECT * FROM person WHERE surname = 'Doe'"
-
-            console.log("People found: %d", people.length);
-            console.log("First person: %s, age %d", people[0].fullName(), people[0].age);
-
-            people[0].age = 16;
-            people[0].save(function (err) {
-                // err.msg = "under-age";
-            });
+     console.log(obj[Object.keys(req.params.query)]);
+      obj.save(function (err) {
+            // err.msg = "under-age";
         });
-    */
+
+      logger.info({
+        result: obj
+      });
+      res.send({
+        result: obj
+      });
+    });
   }
 }
 
