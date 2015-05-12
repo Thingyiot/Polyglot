@@ -21,6 +21,11 @@ controller.count = function(req, res) {
   _helper.count(req.params.type, req.params.cache, req.body.key, res);
 }
 
+controller.del = function(req, res) {
+  logger.info(req.params);
+  _helper.del(req.params.type, req.params.cache, req.body.key, res);
+}
+
 
 // Expose app
 exports = module.exports = controller;

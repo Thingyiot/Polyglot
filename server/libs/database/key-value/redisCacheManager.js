@@ -38,7 +38,8 @@ redisCacheManager.prototype.get = function(key, res) {
 }
 
 redisCacheManager.prototype.count = function(key, res) {
-    client.get(key, function(err, value) {
+  client.get(key, function(err, value) {
+    if (value) {
       console.log(value.length);
       res.send({
         returned: {
@@ -46,7 +47,21 @@ redisCacheManager.prototype.count = function(key, res) {
           count: value.length
         }
       });
+    }
+  });
+}
+
+
+redisCacheManager.prototype.del = function(key, res) {
+  client.del(key, function(err, value) {
+    res.send({
+      returned: {
+        key: key,
+        count: value
+      }
     });
-  }
-  // Expose app
+  });
+}
+
+// Expose app
 exports = module.exports = redisCacheManager;

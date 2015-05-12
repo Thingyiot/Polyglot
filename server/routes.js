@@ -13,6 +13,7 @@ module.exports = function(app) {
    app.post('/:type/:cache/set', cacheController.set);
    app.post('/:type/:cache/get', cacheController.get);
    app.post('/:type/:cache/count', cacheController.count);
+   app.post('/:type/:cache/delete', cacheController.del);
 
    app.post('/:type/:db/:model/create', dbController.create);
    app.post('/:type/:db/:model/findone', dbController.findOne);
