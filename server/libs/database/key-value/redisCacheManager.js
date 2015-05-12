@@ -17,7 +17,10 @@ redisCacheManager.prototype.connect = function() {
 }
 
 redisCacheManager.prototype.set = function(key, value, ttl) {
-   client.set(key,value);
+  client.set(key, value);
+  if (ttl) {
+    client.expire(key, ttl);
+  }
 }
 
 redisCacheManager.prototype.get = function(key, res) {
@@ -34,5 +37,16 @@ redisCacheManager.prototype.get = function(key, res) {
   });
 }
 
-// Expose app
+redisCacheManager.prototype.count = function(key, res) {
+    client.get(key, function(err, value) {
+      console.log(value.length);
+      res.send({
+        returned: {
+          key: key,
+          count: value.length
+        }
+      });
+    });
+  }
+  // Expose app
 exports = module.exports = redisCacheManager;

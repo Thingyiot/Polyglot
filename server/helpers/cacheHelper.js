@@ -18,6 +18,9 @@ cacheHelper.prototype.get = function(type,cache,key,res) {
     redis.get(key,res);
 }
 
+cacheHelper.prototype.count = function(type,cache,key,res) {
+    redis.count(key,res);
+}
 
 // Expose app
 exports = module.exports = cacheHelper;
