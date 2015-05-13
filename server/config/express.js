@@ -29,7 +29,6 @@
      if (!req.session) {
        return next(new Error('oh no'));// handle error
      }
-     logger.info('Sucessfully Creating Sessions...');
      next();// otherwise continue
    });
 
