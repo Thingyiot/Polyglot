@@ -8,7 +8,7 @@ var prettyStdOut = new PrettyStream();
 prettyStdOut.pipe(process.stdout);
 
   var  logger = bunyan.createLogger({
-          name: 'polygloy',
+          name: 'polyglot',
           streams: [{
               level: 'info',
               type: 'raw',

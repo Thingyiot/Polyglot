@@ -72,24 +72,9 @@ module.exports = function(app) {
     }
   }
 
-  app.get('/api/auth/token', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
-      if (err) {
-        return next(err);
-      }
-      if (!user) {
-        var token = randtoken.generate(256);
-         res.send({
-          'message':'user does not exist new token generated ..',
-          'token': token
-        });
-      } else {
-        res.send({
-          'token': info.token
-        });
-      }
-    })(req, res, next);
-  });
+   var authHelper = require('../controllers/authController')(passport,app);
+       authHelper.getAuthToken();
+
 
   app.use(session({
     secret: 'nyan cat'
