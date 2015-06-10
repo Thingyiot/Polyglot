@@ -8,6 +8,7 @@
    var RedisStore = require('connect-redis')(session);
    var logger = require('../config/logger');
 
+
    var options = {
      host: 'localhost',
      port: 6379

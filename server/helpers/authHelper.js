@@ -1,6 +1,9 @@
 module.exports = function(passport,app) {
   var logger = require('../config/logger');
   var randtoken = require('rand-token');
+  var dbHelper=require('./dbHelper');
+  var _helper=new dbHelper();
+  var Promise = require("bluebird");
 
   var obj={
     authenticate:function(req,res,next){
@@ -10,21 +13,26 @@ module.exports = function(passport,app) {
       }
       if (!user) {
         var token = randtoken.generate(256);
-        var obj = {
+        var response = {
           'message': 'user does not exist new token generated ..',
           'token': token
         };
-        logger.info(obj);
-        res.send(obj);
+        logger.info(response);
+        res.send(response);
       } else {
-        var obj = {
+        var response = {
           'token': info.token
         };
-        logger.info(obj);
-        res.send(obj);
+        res.send(response);
       }
     })(req, res, next);
-   }
+   },
+    getClientId:function(req,res){
+        _helper.findOne('document','mongo','findOne','token',req,res);
+    },
+    addClient:function(req,res){
+
+    }
 };
 
   return obj;

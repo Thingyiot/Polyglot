@@ -1,7 +1,5 @@
 module.exports = function(app) {
    var mongoose = require('mongoose');
-   var dbController = require('./controllers/dbController');
-   var cacheController = require('./controllers/cacheController');
    var config = require('./config/config');
    var smockito = require(config.build.mocker);
    var stub = new smockito("user");
@@ -10,15 +8,4 @@ module.exports = function(app) {
       res.send(stub.getStubs()[0].value.user);
    });
 
-   app.post('/:type/:cache/set', cacheController.set);
-   app.post('/:type/:cache/get', cacheController.get);
-   app.post('/:type/:cache/count', cacheController.count);
-   app.post('/:type/:cache/delete', cacheController.del);
-
-   app.post('/:type/:db/:model/create', dbController.create);
-   app.post('/:type/:db/:model/findone', dbController.findOne);
-   app.post('/:type/:db/:model/findMany', dbController.findMany);
-   app.post('/:type/:db/:model/count', dbController.count);
-   app.post('/:type/:db/:model/delete', dbController.del);
-   app.post('/:type/:db/:model/update', dbController.update);
 }

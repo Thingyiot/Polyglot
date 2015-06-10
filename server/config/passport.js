@@ -10,6 +10,7 @@ module.exports = function(app) {
   var unauthorizedError = require('../errors/unauthorizedError');;
   var session = require('express-session');
   var randtoken = require('rand-token');
+  var Promise = require("bluebird");
 
 
   // Passport session setup.
@@ -72,9 +73,23 @@ module.exports = function(app) {
     }
   }
 
-   var authHelper = require('../controllers/authController')(passport,app);
-       authHelper.getAuthToken();
+var authHelper = require('../controllers/authController')(passport,app);
 
+function getAuthToken() {
+  return new Promise(function (resolve, reject) {
+    resolve( authHelper.getAuthToken());
+  });
+}
+
+function getClientId() {
+  return new Promise(function (resolve, reject) {
+    resolve( authHelper.getClientId());
+  });
+}
+
+getAuthToken().then(function() {});
+
+getClientId().then(function() {});
 
   app.use(session({
     secret: 'nyan cat'

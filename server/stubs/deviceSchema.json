@@ -4,7 +4,7 @@
   "type": "object",
   "properties": {
     "id": {
-      "id": "http://jsonschema.net/id",
+      "_id": "http://jsonschema.net/_id",
       "type": "string"
     },
     "deviceType": {
@@ -37,7 +37,7 @@
     }
   },
   "required": [
-    "id",
+    "_id",
     "deviceType",
     "deviceName",
     "deviceBrand",

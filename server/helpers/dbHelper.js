@@ -45,18 +45,31 @@ dbHelper.prototype.findOne = function(dbType, database, action, model, req, res)
       "_id": req.params._id
     }, function(err, obj) {
       if (err) return handleError(err);
+       if(obj){
       res.send({
         result: obj
       });
+    }
+     else{
+      res.send({'message':'No Result found'});
+      //throw err
+    }
+
     })
   } else if (dbType === 'relational' && database === 'mysql' && action === 'findOne') {
     var call = model.get(req.params.id, function(err, obj) {
       logger.info({
         result: obj
       });
+      if(obj){
       res.send({
         result: obj
       });
+    }
+    else{
+      res.send({'message':'No Result found'});
+      //throw err
+    }
     });
   }
 }
